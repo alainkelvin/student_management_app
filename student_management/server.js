@@ -1,10 +1,10 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const mysql = require('mysql');
+const mysql = require('mysql2');
 const cors = require('cors');
 
 const app = express();
-const port = 3000;
+const port = 8080;
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -12,10 +12,10 @@ app.use(bodyParser.json());
 // Connexion à la base de données
 const db = mysql.createConnection({
     host: 'localhost',
-    user: 'root', // Remplacez par votre utilisateur MySQL
-    password: '', // Remplacez par votre mot de passe MySQL
+    user: 'admin', // Remplacez par votre utilisateur MySQL
+    password: 'admin', // Remplacez par votre mot de passe MySQL
     database: 'student_management_db',
-    port: '3309'
+    port: '3306'
 });
 
 db.connect(err => {
@@ -57,11 +57,11 @@ app.delete('/students/:id', (req, res) => {
 });
 
 
-app.listen(3000, '192.168.32.44', () => {
-    console.log('Serveur en cours d\'exécution sur https://1b22-154-117-232-167.ngrok-free.app');
-  });
-  
+app.listen(port, () => {
+    console.log(`Serveur en cours d'exécution sur http://localhost:${port}`);
+});
 
-//app.listen(port, () => {
-//    console.log(`Serveur en cours d'exécution sur http://localhost:${port}`);
-//});
+//app.listen(8080, '127.0.0.1', () => {
+//  console.log('Serveur en cours d\'exécution sur http://127.0.0.1:8080');
+//  });
+  
